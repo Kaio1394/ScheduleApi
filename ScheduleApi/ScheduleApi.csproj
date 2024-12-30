@@ -16,7 +16,6 @@
     <Folder Include="Model\Dto\" />
     <Folder Include="Helper\" />
     <Folder Include="Configurations\" />
-    <Folder Include="Enum\" />
     <Folder Include="Interface\" />
   </ItemGroup>
 
