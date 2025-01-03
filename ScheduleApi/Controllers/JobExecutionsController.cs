@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ScheduleApi.Data;
+using ScheduleApi.Model.Dto.Job;
+using ScheduleApi.Static;
 
 namespace ScheduleApi.Controllers
 {
@@ -14,31 +18,54 @@ namespace ScheduleApi.Controllers
     public class JobExecutionsController : ControllerBase
     {
         private readonly ScheduleApiDbContext _context;
+        private readonly IMapper _mapper;
+        private readonly ILogger<JobExecutionsController> _logger;
 
-        public JobExecutionsController(ScheduleApiDbContext context)
+        public JobExecutionsController(ScheduleApiDbContext context, IMapper mapper, ILogger<JobExecutionsController> logger)
         {
             _context = context;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/JobExecutions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<JobExecution>>> GetJobExecutions()
+        public async Task<ActionResult<IEnumerable<JobExecutionReadOnlyDto>>> GetJobExecutions()
         {
-            return await _context.JobExecutions.ToListAsync();
+            try
+            {
+                var listJobs = await _context.JobExecutions.ToListAsync();
+                var listJobsDto = _mapper.Map< IEnumerable<JobExecutionReadOnlyDto>>(listJobs);
+                return Ok(listJobsDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error performing GET in {nameof(GetJobExecutions)}");
+                return StatusCode(500, Messages.ERROR_500);
+            }
         }
 
         // GET: api/JobExecutions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<JobExecution>> GetJobExecution(int id)
+        public async Task<ActionResult<JobExecutionReadOnlyDto>> GetJobExecution(int id)
         {
-            var jobExecution = await _context.JobExecutions.FindAsync(id);
-
-            if (jobExecution == null)
+            try
             {
-                return NotFound();
-            }
+                var jobExecution = await _context.JobExecutions.FindAsync(id);
 
-            return jobExecution;
+                if (jobExecution == null)
+                {
+                    _logger.LogWarning($"Record Not Found: {nameof(GetJobExecution)}");
+                    return NotFound();
+                }
+                var model = _mapper.Map<JobExecutionReadOnlyDto>(jobExecution);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error performing GET in {nameof(GetJobExecutions)}");
+                return StatusCode(500, Messages.ERROR_500);
+            }
         }
 
         // PUT: api/JobExecutions/5

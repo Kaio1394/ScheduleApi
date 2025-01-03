@@ -30,7 +30,7 @@ namespace ScheduleApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); 
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<JobExecution>(entity =>
             {
@@ -49,9 +49,10 @@ namespace ScheduleApi.Data
                 entity.Property(e => e.Script).HasMaxLength(255);
                 entity.Property(e => e.Tag).HasMaxLength(50);
 
-                entity.HasOne(d => d.GuidServerNavigation).WithMany(p => p.JobExecutions)
-                    .HasPrincipalKey(p => p.GuidServer)
-                    .HasForeignKey(d => d.GuidServer)
+                // Relação agora feita pelo ServerId
+                entity.HasOne(d => d.Server)
+                    .WithMany(p => p.JobExecutions)
+                    .HasForeignKey(d => d.ServerId) // Usando ServerId
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JobExecution_ToServer");
             });
@@ -99,10 +100,7 @@ namespace ScheduleApi.Data
 
                 entity.HasIndex(e => e.TagName, "UQ__Server__BDE0FD1D1A7B2240").IsUnique();
 
-                entity.HasIndex(e => e.GuidServer, "UQ__Server__DCCC6CDC76E84F4B").IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-                entity.Property(e => e.GuidServer).HasDefaultValueSql("(newid())");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Ipaddress)
                     .HasMaxLength(45)
                     .HasColumnName("IPAddress");
@@ -114,19 +112,19 @@ namespace ScheduleApi.Data
                 {
                     Name = "UserExecutor",
                     NormalizedName = "USER_EXECUTOR",
-                    Id = "85fc8893-00c4-4459-a917-52fcd2370cc1"
+                    Id = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1"
                 },
                 new IdentityRole
                 {
-                    Name = "UserRunner",
-                    NormalizedName = "USER_RUNNER",
-                    Id = "f153e55c-2405-40d7-94b0-82cebebe96e4"
+                    Name = "UserJobCreator",
+                    NormalizedName = "USER_JOB_CREATOR",
+                    Id = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4"
                 },
                 new IdentityRole
                 {
                     Name = "Admin",
-                    NormalizedName = "ADM",
-                    Id = "85cfbc9b-a2ba-4836-a384-d56f98504729"
+                    NormalizedName = "ADMIN",
+                    Id = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729"
                 }
             );
 
@@ -146,12 +144,12 @@ namespace ScheduleApi.Data
                 new ApiUser
                 {
                     Id = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463",
-                    Email = "user_runner@schedule.com",
-                    NormalizedEmail = "USER_RUNNER@SCHEDULE.COM",
-                    UserName = "user_runner@schedule.com",
-                    NormalizedUserName = "USER_RUNNER@SCHEDULE.COM",
+                    Email = "user_job_creator@schedule.com",
+                    NormalizedEmail = "USER_JOB_CREATOR@SCHEDULE.COM",
+                    UserName = "user_job_creator@schedule.com",
+                    NormalizedUserName = "USER_JOB_CREATO@SCHEDULE.COM",
                     FirstName = "System",
-                    LastName = "UserRunner",
+                    LastName = "UserjobCreator",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1")
                 },
                 new ApiUser
@@ -169,17 +167,17 @@ namespace ScheduleApi.Data
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
                 new IdentityUserRole<string>
                 {
-                    RoleId = "85fc8893-00c4-4459-a917-52fcd2370cc1",
+                    RoleId = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1",
                     UserId = "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127"
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = "f153e55c-2405-40d7-94b0-82cebebe96e4",
+                    RoleId = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4",
                     UserId = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463"
                 },
                 new IdentityUserRole<string>
                 {
-                    RoleId = "85cfbc9b-a2ba-4836-a384-d56f98504729",
+                    RoleId = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729",
                     UserId = "631ac7af-a965-4c1f-9b05-f40d426c8ad4"
                 }
             );

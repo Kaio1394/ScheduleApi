@@ -12,8 +12,8 @@ using ScheduleApi.Data;
 namespace ScheduleApi.Migrations
 {
     [DbContext(typeof(ScheduleApiDbContext))]
-    [Migration("20241231231508_extendDb")]
-    partial class extendDb
+    [Migration("20250102115935_Change")]
+    partial class Change
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,21 +54,21 @@ namespace ScheduleApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "85fc8893-00c4-4459-a917-52fcd2370cc1",
+                            Id = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1",
                             Name = "UserExecutor",
                             NormalizedName = "USER_EXECUTOR"
                         },
                         new
                         {
-                            Id = "f153e55c-2405-40d7-94b0-82cebebe96e4",
-                            Name = "UserRunner",
-                            NormalizedName = "USER_RUNNER"
+                            Id = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4",
+                            Name = "UserJobCreator",
+                            NormalizedName = "USER_JOB_CREATOR"
                         },
                         new
                         {
-                            Id = "85cfbc9b-a2ba-4836-a384-d56f98504729",
+                            Id = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729",
                             Name = "Admin",
-                            NormalizedName = "ADM"
+                            NormalizedName = "ADMIN"
                         });
                 });
 
@@ -162,17 +162,17 @@ namespace ScheduleApi.Migrations
                         new
                         {
                             UserId = "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127",
-                            RoleId = "85fc8893-00c4-4459-a917-52fcd2370cc1"
+                            RoleId = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1"
                         },
                         new
                         {
                             UserId = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463",
-                            RoleId = "f153e55c-2405-40d7-94b0-82cebebe96e4"
+                            RoleId = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4"
                         },
                         new
                         {
                             UserId = "631ac7af-a965-4c1f-9b05-f40d426c8ad4",
-                            RoleId = "85cfbc9b-a2ba-4836-a384-d56f98504729"
+                            RoleId = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729"
                         });
                 });
 
@@ -212,9 +212,6 @@ namespace ScheduleApi.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("(newid())");
 
-                    b.Property<Guid>("GuidServer")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -227,6 +224,9 @@ namespace ScheduleApi.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int>("ServerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Tag")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -237,7 +237,7 @@ namespace ScheduleApi.Migrations
                     b.HasKey("Id")
                         .HasName("PK__tmp_ms_x__3214EC07A879D89C");
 
-                    b.HasIndex("GuidServer");
+                    b.HasIndex("ServerId");
 
                     b.HasIndex(new[] { "Name" }, "UQ__JobExecu__737584F683F6B7AC")
                         .IsUnique();
@@ -325,12 +325,10 @@ namespace ScheduleApi.Migrations
             modelBuilder.Entity("ScheduleApi.Data.Server", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<Guid>("GuidServer")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("(newid())");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Ipaddress")
                         .IsRequired()
@@ -347,9 +345,6 @@ namespace ScheduleApi.Migrations
                         .HasName("PK__Server__3214EC076AA2AB77");
 
                     b.HasIndex(new[] { "TagName" }, "UQ__Server__BDE0FD1D1A7B2240")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "GuidServer" }, "UQ__Server__DCCC6CDC76E84F4B")
                         .IsUnique();
 
                     b.ToTable("Server", (string)null);
@@ -432,7 +427,7 @@ namespace ScheduleApi.Migrations
                         {
                             Id = "631ac7af-a965-4c1f-9b05-f40d426c8ad4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "91530e8c-61b1-43bc-b1bd-1c75e45ae1d8",
+                            ConcurrencyStamp = "892d2982-5bb3-4473-8609-96ef1d3e5180",
                             Email = "admin@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -440,9 +435,9 @@ namespace ScheduleApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@SCHEDULE.COM",
                             NormalizedUserName = "ADMIN@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKnr5fL7982cnXZH0j45PnAf4z4kcUH3h1p6n3Gh3BeqV2W8KkKY3exX2Rh2CmfF5A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBGVUTwrbhO4SVkgCwHMS1gHFc2zKRkPhI7DZyQ4bS7Nbve6Eu2wXCb1COEerLb4FQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0bf262f2-1efb-4a00-aed9-17a39d849675",
+                            SecurityStamp = "a3aa3123-801b-4428-8f0e-e54c625bfb31",
                             TwoFactorEnabled = false,
                             UserName = "admin@schedule.com"
                         },
@@ -450,25 +445,25 @@ namespace ScheduleApi.Migrations
                         {
                             Id = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c406e1fc-11ec-41af-880c-6de7870cfe3f",
-                            Email = "user_runner@schedule.com",
+                            ConcurrencyStamp = "043a5e86-e917-4d1c-b4d5-6b40973363a2",
+                            Email = "user_job_creator@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
-                            LastName = "UserRunner",
+                            LastName = "UserjobCreator",
                             LockoutEnabled = false,
-                            NormalizedEmail = "USER_RUNNER@SCHEDULE.COM",
-                            NormalizedUserName = "USER_RUNNER@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDMIcl/wGQ1hRev6efofP5CkgePcqsypir1EIiwSdfMlrUIMQMfwFA4BUUhE52+lsA==",
+                            NormalizedEmail = "USER_JOB_CREATOR@SCHEDULE.COM",
+                            NormalizedUserName = "USER_JOB_CREATO@SCHEDULE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPWJGh1e07Ayrk+81zKE3UjiqS0Bm8VZysqQIES2Mz1l4BGqUto8ePIspM+7JNCBMA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a2192397-2b34-436f-acc2-498e7e399f20",
+                            SecurityStamp = "595d9518-2e9e-4731-a3f9-ec0409141f03",
                             TwoFactorEnabled = false,
-                            UserName = "user_runner@schedule.com"
+                            UserName = "user_job_creator@schedule.com"
                         },
                         new
                         {
                             Id = "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7e8c48cf-8e45-410e-9ece-0ba3ef46b6e7",
+                            ConcurrencyStamp = "b5755e31-8f9a-409e-9cd5-6e04a625c6b4",
                             Email = "user_executor@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -476,9 +471,9 @@ namespace ScheduleApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER_EXECUTOR@SCHEDULE.COM",
                             NormalizedUserName = "USER_EXECUTOR@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFeQyydpNAL9lQHLTp/hKUWUnNVjllF+Uu8oDftQddriMj3waSzTvHB94in8qjirJg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAZO0ghD/bceAZBaqvljbR+Hm6Apea9go6F6ogLTRlDCMoRjbkXjT64k8KJZWGpwgQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8724ce3c-e2f5-4124-91d2-6ee8abd37d9d",
+                            SecurityStamp = "ef0076e1-2ce9-4eeb-812a-97ea426bdb34",
                             TwoFactorEnabled = false,
                             UserName = "user_executor@schedule.com"
                         });
@@ -537,14 +532,13 @@ namespace ScheduleApi.Migrations
 
             modelBuilder.Entity("ScheduleApi.Data.JobExecution", b =>
                 {
-                    b.HasOne("ScheduleApi.Data.Server", "GuidServerNavigation")
+                    b.HasOne("ScheduleApi.Data.Server", "Server")
                         .WithMany("JobExecutions")
-                        .HasForeignKey("GuidServer")
-                        .HasPrincipalKey("GuidServer")
+                        .HasForeignKey("ServerId")
                         .IsRequired()
                         .HasConstraintName("FK_JobExecution_ToServer");
 
-                    b.Navigation("GuidServerNavigation");
+                    b.Navigation("Server");
                 });
 
             modelBuilder.Entity("ScheduleApi.Data.Server", b =>

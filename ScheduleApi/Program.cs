@@ -9,6 +9,7 @@ using System;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using ScheduleApi.Controllers;
+using ScheduleApi.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<ScheduleApiDbContext>(options =>
 builder.Services.AddIdentity<ApiUser, IdentityRole>()
     .AddEntityFrameworkStores<ScheduleApiDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 builder.Logging.ClearProviders();
 builder.Services.AddControllers();

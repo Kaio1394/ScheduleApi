@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ScheduleApi.Data
+namespace ScheduleApi.Model.Dto.Job
 {
-    public partial class JobExecution
+    public class JobExecutionUpdateDto: DtoBase
     {
-        public int Id { get; set; }
-
+        [Required]
+        [StringLength(50)]
         public string Name { get; set; } = null!;
-
+        [Required]
         public Guid GuidJob { get; set; }
-
         public int ServerId { get; set; }
-
+        [Required]
         public DateOnly? DataExec { get; set; }
-
+        [Required]
+        [StringLength(255)]
         public string? Description { get; set; }
-
+        [Required]
         public string? Script { get; set; }
-
+        [Required]
         public int Priority { get; set; }
-
+        [Required]
         public string? Tag { get; set; }
-
+        [Required]
         public int? Timeout { get; set; }
-
-        // Propriedade de navegação
-        public virtual Server Server { get; set; } = null!;
     }
 }

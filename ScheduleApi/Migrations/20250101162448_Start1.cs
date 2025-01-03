@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ScheduleApi.Migrations
 {
     /// <inheritdoc />
-    public partial class extendDb : Migration
+    public partial class Start1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,15 +102,14 @@ namespace ScheduleApi.Migrations
                 name: "Server",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TagName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    GuidServer = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
                     IPAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Server__3214EC076AA2AB77", x => x.Id);
-                    table.UniqueConstraint("AK_Server_GuidServer", x => x.GuidServer);
                 });
 
             migrationBuilder.CreateTable(
@@ -226,7 +225,7 @@ namespace ScheduleApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     GuidJob = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
-                    GuidServer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ServerId = table.Column<int>(type: "int", nullable: false),
                     DataExec = table.Column<DateOnly>(type: "date", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Script = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
@@ -239,9 +238,9 @@ namespace ScheduleApi.Migrations
                     table.PrimaryKey("PK__tmp_ms_x__3214EC07A879D89C", x => x.Id);
                     table.ForeignKey(
                         name: "FK_JobExecution_ToServer",
-                        column: x => x.GuidServer,
+                        column: x => x.ServerId,
                         principalTable: "Server",
-                        principalColumn: "GuidServer");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -259,9 +258,9 @@ namespace ScheduleApi.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "51c3aa5c-cc8b-4db0-b0d4-0a8161408463", 0, "c406e1fc-11ec-41af-880c-6de7870cfe3f", "user_runner@schedule.com", false, "System", "UserRunner", false, null, "USER_RUNNER@SCHEDULE.COM", "USER_RUNNER@SCHEDULE.COM", "AQAAAAIAAYagAAAAEDMIcl/wGQ1hRev6efofP5CkgePcqsypir1EIiwSdfMlrUIMQMfwFA4BUUhE52+lsA==", null, false, "a2192397-2b34-436f-acc2-498e7e399f20", false, "user_runner@schedule.com" },
-                    { "631ac7af-a965-4c1f-9b05-f40d426c8ad4", 0, "91530e8c-61b1-43bc-b1bd-1c75e45ae1d8", "admin@schedule.com", false, "System", "Admin", false, null, "ADMIN@SCHEDULE.COM", "ADMIN@SCHEDULE.COM", "AQAAAAIAAYagAAAAEKnr5fL7982cnXZH0j45PnAf4z4kcUH3h1p6n3Gh3BeqV2W8KkKY3exX2Rh2CmfF5A==", null, false, "0bf262f2-1efb-4a00-aed9-17a39d849675", false, "admin@schedule.com" },
-                    { "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127", 0, "7e8c48cf-8e45-410e-9ece-0ba3ef46b6e7", "user_executor@schedule.com", false, "System", "UserExecutor", false, null, "USER_EXECUTOR@SCHEDULE.COM", "USER_EXECUTOR@SCHEDULE.COM", "AQAAAAIAAYagAAAAEFeQyydpNAL9lQHLTp/hKUWUnNVjllF+Uu8oDftQddriMj3waSzTvHB94in8qjirJg==", null, false, "8724ce3c-e2f5-4124-91d2-6ee8abd37d9d", false, "user_executor@schedule.com" }
+                    { "51c3aa5c-cc8b-4db0-b0d4-0a8161408463", 0, "a2fc5be4-6560-445e-8721-3bf8130f9c2e", "user_runner@schedule.com", false, "System", "UserRunner", false, null, "USER_RUNNER@SCHEDULE.COM", "USER_RUNNER@SCHEDULE.COM", "AQAAAAIAAYagAAAAECXMkgB8iY6XZycwrQBTvLnfRfiozruJ8MOKMriEhWAMmb9iVyuyjO5/X/Ri6A5zYw==", null, false, "f4a8bed7-056a-44ab-8d9f-d69a854c7e18", false, "user_runner@schedule.com" },
+                    { "631ac7af-a965-4c1f-9b05-f40d426c8ad4", 0, "8d91bd1a-ba40-4b1b-a212-4aa9a6dd3570", "admin@schedule.com", false, "System", "Admin", false, null, "ADMIN@SCHEDULE.COM", "ADMIN@SCHEDULE.COM", "AQAAAAIAAYagAAAAEA7SHI8IX7MJ3gaGCfU6b2TSj87qo1rZYb6FWZzFszN+3bpvrgmjhewBJUZnB90s4g==", null, false, "69b08f6e-684a-4654-a855-f519f08795bb", false, "admin@schedule.com" },
+                    { "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127", 0, "a9da896d-4530-412d-8372-01ae7d77c6ac", "user_executor@schedule.com", false, "System", "UserExecutor", false, null, "USER_EXECUTOR@SCHEDULE.COM", "USER_EXECUTOR@SCHEDULE.COM", "AQAAAAIAAYagAAAAECz4/NOuIs/P8PA9LGj6Udz0G9trHwcpqPOQ7gtd4CylgVoNLWYf48LuSGKOdh62EQ==", null, false, "774aa22b-9065-4d5c-8402-abdcb4b3b634", false, "user_executor@schedule.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -314,9 +313,9 @@ namespace ScheduleApi.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobExecution_GuidServer",
+                name: "IX_JobExecution_ServerId",
                 table: "JobExecution",
-                column: "GuidServer");
+                column: "ServerId");
 
             migrationBuilder.CreateIndex(
                 name: "UQ__JobExecu__737584F683F6B7AC",
@@ -334,12 +333,6 @@ namespace ScheduleApi.Migrations
                 name: "UQ__Server__BDE0FD1D1A7B2240",
                 table: "Server",
                 column: "TagName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "UQ__Server__DCCC6CDC76E84F4B",
-                table: "Server",
-                column: "GuidServer",
                 unique: true);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScheduleApi.Data;
 
@@ -11,9 +12,11 @@ using ScheduleApi.Data;
 namespace ScheduleApi.Migrations
 {
     [DbContext(typeof(ScheduleApiDbContext))]
-    partial class ScheduleApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250102113625_ChangeRole")]
+    partial class ChangeRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,19 +54,19 @@ namespace ScheduleApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1",
+                            Id = "85fc8893-00c4-4459-a917-52fcd2370cc1",
                             Name = "UserExecutor",
                             NormalizedName = "USER_EXECUTOR"
                         },
                         new
                         {
-                            Id = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4",
-                            Name = "UserJobCreator",
+                            Id = "f153e55c-2405-40d7-94b0-82cebebe96e4",
+                            Name = " UserJobCreator",
                             NormalizedName = "USER_JOB_CREATOR"
                         },
                         new
                         {
-                            Id = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729",
+                            Id = "85cfbc9b-a2ba-4836-a384-d56f98504729",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -159,17 +162,17 @@ namespace ScheduleApi.Migrations
                         new
                         {
                             UserId = "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127",
-                            RoleId = "USER_EXECUTOR-85fc8893-00c4-4459-a917-52fcd2370cc1"
+                            RoleId = "85fc8893-00c4-4459-a917-52fcd2370cc1"
                         },
                         new
                         {
                             UserId = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463",
-                            RoleId = "USER_JOB_CREATOR-f153e55c-2405-40d7-94b0-82cebebe96e4"
+                            RoleId = "f153e55c-2405-40d7-94b0-82cebebe96e4"
                         },
                         new
                         {
                             UserId = "631ac7af-a965-4c1f-9b05-f40d426c8ad4",
-                            RoleId = "ADMIN-85cfbc9b-a2ba-4836-a384-d56f98504729"
+                            RoleId = "85cfbc9b-a2ba-4836-a384-d56f98504729"
                         });
                 });
 
@@ -424,7 +427,7 @@ namespace ScheduleApi.Migrations
                         {
                             Id = "631ac7af-a965-4c1f-9b05-f40d426c8ad4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "892d2982-5bb3-4473-8609-96ef1d3e5180",
+                            ConcurrencyStamp = "9ed8738e-12b2-473a-853f-302cf6f9fa48",
                             Email = "admin@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -432,9 +435,9 @@ namespace ScheduleApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@SCHEDULE.COM",
                             NormalizedUserName = "ADMIN@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBGVUTwrbhO4SVkgCwHMS1gHFc2zKRkPhI7DZyQ4bS7Nbve6Eu2wXCb1COEerLb4FQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMw+xi4RMteTqMy1doC2Jw7ZqQeBnFOAlEyBypHc+ZC1P4o/vlICXEEooE7/iSA4rQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a3aa3123-801b-4428-8f0e-e54c625bfb31",
+                            SecurityStamp = "127fea5e-3b61-4203-841b-a99bf53c6931",
                             TwoFactorEnabled = false,
                             UserName = "admin@schedule.com"
                         },
@@ -442,7 +445,7 @@ namespace ScheduleApi.Migrations
                         {
                             Id = "51c3aa5c-cc8b-4db0-b0d4-0a8161408463",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "043a5e86-e917-4d1c-b4d5-6b40973363a2",
+                            ConcurrencyStamp = "8f583b67-9975-4da0-9723-5734bb558d67",
                             Email = "user_job_creator@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -450,9 +453,9 @@ namespace ScheduleApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER_JOB_CREATOR@SCHEDULE.COM",
                             NormalizedUserName = "USER_JOB_CREATO@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPWJGh1e07Ayrk+81zKE3UjiqS0Bm8VZysqQIES2Mz1l4BGqUto8ePIspM+7JNCBMA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEObqpymvvaPCprcazsO0k9Iw7PooxjV3wdz5Zc9k02cLaP0LmT2Fc4uzHXfCKJju+Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "595d9518-2e9e-4731-a3f9-ec0409141f03",
+                            SecurityStamp = "769050bd-d28a-4e2a-8ee9-bd01e16e23c6",
                             TwoFactorEnabled = false,
                             UserName = "user_job_creator@schedule.com"
                         },
@@ -460,7 +463,7 @@ namespace ScheduleApi.Migrations
                         {
                             Id = "de79ccd4-4bc4-4bd0-94bc-ec1dcf4ec127",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b5755e31-8f9a-409e-9cd5-6e04a625c6b4",
+                            ConcurrencyStamp = "9ad466e0-92cb-4b53-a34c-d37b1e14d276",
                             Email = "user_executor@schedule.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -468,9 +471,9 @@ namespace ScheduleApi.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER_EXECUTOR@SCHEDULE.COM",
                             NormalizedUserName = "USER_EXECUTOR@SCHEDULE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAZO0ghD/bceAZBaqvljbR+Hm6Apea9go6F6ogLTRlDCMoRjbkXjT64k8KJZWGpwgQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPY20cdibVYqFll9X+zeBcRytHdsT7ZdoSznnRxvIQlFag8I3NW1wJuYPCiD9AwZQA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ef0076e1-2ce9-4eeb-812a-97ea426bdb34",
+                            SecurityStamp = "ad683407-1b4c-47c4-9ac2-ef73405859a0",
                             TwoFactorEnabled = false,
                             UserName = "user_executor@schedule.com"
                         });
