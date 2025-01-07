@@ -1,0 +1,37 @@
+.login-container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    height: 100vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.login-container section.form{
+    width: 100%;
+    max-width: 350px;
+}
+
+.forgot-password {
+    text-decoration: none; 
+    color: #C3C3C3FF; 
+    font-family: Inter; 
+    font-size: 14px; 
+    line-height: 22px; 
+    margin-top: 15px; 
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    font-weight: bold;
+}
+
+#sign-up{
+    color: #C3C3C3FF;
+    background: #F7F7F7FF
+}
+
+#sign-up:hover{
+    color: #C3C3C3FF; 
+    background: #DDDDDDFF;
+}

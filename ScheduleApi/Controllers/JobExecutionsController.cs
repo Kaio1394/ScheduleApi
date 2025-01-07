@@ -30,6 +30,7 @@ namespace ScheduleApi.Controllers
 
         // GET: api/JobExecutions
         [HttpGet]
+        [Authorize(Roles = $"{ClaimType.ADMIN},{ClaimType.USER_JOB_CREATOR},{ClaimType.USER_EXECUTOR}")]
         public async Task<ActionResult<IEnumerable<JobExecutionReadOnlyDto>>> GetJobExecutions()
         {
             try
@@ -47,6 +48,7 @@ namespace ScheduleApi.Controllers
 
         // GET: api/JobExecutions/5
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{ClaimType.ADMIN},{ClaimType.USER_JOB_CREATOR},{ClaimType.USER_EXECUTOR}")]
         public async Task<ActionResult<JobExecutionReadOnlyDto>> GetJobExecution(int id)
         {
             try
@@ -71,6 +73,7 @@ namespace ScheduleApi.Controllers
         // PUT: api/JobExecutions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{ClaimType.ADMIN},{ClaimType.USER_JOB_CREATOR}")]
         public async Task<IActionResult> PutJobExecution(int id, JobExecution jobExecution)
         {
             if (id != jobExecution.Id)
@@ -102,6 +105,7 @@ namespace ScheduleApi.Controllers
         // POST: api/JobExecutions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = $"{ClaimType.ADMIN},{ClaimType.USER_JOB_CREATOR}")]
         public async Task<ActionResult<JobExecution>> PostJobExecution(JobExecution jobExecution)
         {
             _context.JobExecutions.Add(jobExecution);
@@ -126,6 +130,7 @@ namespace ScheduleApi.Controllers
 
         // DELETE: api/JobExecutions/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{ClaimType.ADMIN},{ClaimType.USER_JOB_CREATOR}")]
         public async Task<IActionResult> DeleteJobExecution(int id)
         {
             var jobExecution = await _context.JobExecutions.FindAsync(id);
