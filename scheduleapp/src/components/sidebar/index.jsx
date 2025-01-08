@@ -4,14 +4,9 @@ import './styles.css';
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isJobSubmenuOpen, setIsJobSubmenuOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
-
-  const toggleJobSubmenu = () => {
-    setIsJobSubmenuOpen(!isJobSubmenuOpen);
   };
 
   return (
