@@ -1,0 +1,94 @@
+/* Estilos gerais da sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  overflow: hidden;
+  transition: width 0.3s;
+  display: flex;
+}
+
+.sidebar.open {
+  width: 200px; /* Expande a largura quando a sidebar está aberta */
+}
+
+/* Botão para abrir/fechar a sidebar */
+.sidebar .toggle-btn {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+/* Lista de navegação */
+.sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Itens da lista */
+.sidebar nav ul li {
+  display: flex;
+  align-items: center;  /* Alinha ícone e texto verticalmente */
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: white;
+}
+
+/* Estilo ao passar o mouse */
+.sidebar nav ul li:hover {
+  background-color: #444;
+}
+
+/* Estilo do texto */
+.sidebar nav ul li span {
+  margin-left: 10px;  /* Adiciona espaçamento entre o ícone e o texto */
+  display: none;  /* Inicialmente oculto */
+}
+
+/* Exibe o texto quando a sidebar está aberta */
+.sidebar.open nav ul li span {
+  display: inline;  /* Torna o texto visível quando a sidebar está aberta */
+}
+
+/* Submenu */
+.sidebar nav ul .submenu {
+  list-style-type: none;
+  padding-left: 20px;  /* Recuo para submenu */
+  margin-top: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
+
+/* Exibe o submenu quando ativo */
+.sidebar nav ul li.open .submenu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.sidebar nav ul .submenu li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Estilo do submenu ao passar o mouse */
+.sidebar nav ul .submenu li:hover {
+  background-color: #555;
+  color: white;
+}
