@@ -1,12 +1,20 @@
+// Sidebar.js
 import React, { useState } from 'react';
-import { FaHome, FaCog, FaBars, FaServer, FaBriefcase, FaPlay } from 'react-icons/fa';
+import { FaHome, FaCog, FaBars, FaServer, FaBriefcase, FaPlay, FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';  // Usando o hook useNavigate
 import './styles.css';
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();  // Instanciando o hook
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  // Função para navegação
+  const handleClick = (route) => {
+    navigate(route);  // Navega para a rota especificada
   };
 
   return (
@@ -18,23 +26,23 @@ export default function Sidebar() {
         <ul>
           <li>
             <FaHome />
-            <span>Home</span>
+            <span onClick={() => handleClick('/home')}>Home</span> 
           </li>
           <li>
             <FaBriefcase />
-            <span>Job</span>
-          </li>
-          <li>
-            <FaServer />
-            <span>Server</span>
+            <span onClick={() => handleClick('/server')}>Server</span>  
           </li>
           <li>
             <FaPlay />
             <span>Execution</span>
           </li>
+          <li>
+            <FaLock />
+            <span >Vault</span>
+          </li>
           <li className="config">
             <FaCog />
-            <span>Configurações</span>
+            <span >Settings</span>
           </li>
         </ul>
       </nav>
