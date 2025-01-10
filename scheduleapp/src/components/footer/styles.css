@@ -1,0 +1,11 @@
+.footer {
+  position: fixed;
+  bottom: 10px;   /* Distância do fundo */
+  right: 10px;    /* Distância da lateral direita */
+  font-size: 12px; /* Tamanho da fonte menor e mais discreto */
+  color: rgba(0, 0, 0, 0.6); /* Cor neutra com transparência */
+  font-family: 'Arial', sans-serif; /* Fonte limpa e moderna */
+  text-align: right;  /* Alinha o texto à direita */
+  background-color: transparent; /* Sem fundo */
+  z-index: 1000;      /* Garante que o texto fique acima de outros elementos */
+}

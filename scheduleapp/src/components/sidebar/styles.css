@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 50; /* Garante que o sidebar está acima do conteúdo */
 }
 
 /* Largura expandida da sidebar */
@@ -20,8 +21,13 @@
 }
 
 /* Botão de alternância */
+/* Botão de alternância */
 .sidebar .toggle-btn {
-  right: -40px; /* Posicionado fora da barra */
+  z-index: 15;
+  position: absolute;
+  top: 5px; /* Distância do topo */
+  left: 50%; /* Centraliza horizontalmente em relação ao sidebar */
+  transform: translateX(-50%); /* Ajusta para manter o botão centralizado */
   background-color: rgb(209, 205, 205);
   color: black;
   border: none;
@@ -30,11 +36,12 @@
   border-radius: 50%;
 }
 
+
 /* Lista de navegação */
 .sidebar nav ul {
   list-style-type: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 /* Itens da lista */
@@ -56,6 +63,9 @@
 .sidebar nav ul li span {
   margin-left: 10px;
   display: none; /* Oculto por padrão */
+  visibility: visible; /* Torna o texto visível */
+  opacity: 1; /* Totalmente opaco */
+  width: auto; /* Ajusta a largura ao texto */
 }
 
 /* Exibe o texto quando a sidebar está aberta */
@@ -63,15 +73,18 @@
   display: inline-block; /* Mostra o texto */
 }
 
-/* Submenu e hover */
-.sidebar nav ul li:hover .submenu {
-  display: block;
-}
-.config{
+/* Configuração de layout */
+.layout {
   display: flex;
-  align-items: center;
-  padding: 15px;
-  cursor: pointer;
-  color: black;
-  transition: background-color 0.3s;
+}
+
+.content {
+  flex: 1;
+  margin-left: 60px; /* Espaço para o sidebar fechado */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Ajuste quando o sidebar está aberto */
+.sidebar.open ~ .content {
+  margin-left: 150px; /* Espaço para o sidebar aberto */
 }

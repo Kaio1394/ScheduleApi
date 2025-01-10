@@ -1,12 +1,12 @@
 import React from "react";
 import './styles.css'
-import Layout from '../layoutCommon/'; 
+import Layout from '../layoutCommon'; 
 
-export default function Home(){
+export default function Job(){
     return (
         <Layout>
             <div className="home-content">
-                <h1>TESTE HOME</h1>
+                <h1>TESTE JOB</h1>
             </div>
         </Layout>
     );
