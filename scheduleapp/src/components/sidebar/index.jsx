@@ -1,6 +1,6 @@
 // Sidebar.js
 import React, { useState } from 'react';
-import { FaHome, FaCog, FaBars, FaServer, FaBriefcase, FaPlay, FaLock } from 'react-icons/fa';
+import { FaHome, FaCog, FaBars, FaServer, FaBriefcase, FaPlay, FaLock, FaTrash  } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Usando o hook useNavigate
 import './styles.css';
 
