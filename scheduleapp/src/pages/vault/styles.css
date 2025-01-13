@@ -1,0 +1,144 @@
+/* Estilizando a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove os espaços entre as bordas */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 0px solid #ddd; /* Define bordas finas e leves */
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+}
+
+table tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+/* Estilo para o container da tabela */
+.container-table {
+    width: 600px;
+    margin: 0; /* Remover centralização para alinhar à esquerda */
+}
+
+/* Estilizando o formulário de edição */
+.edit-container {
+    margin-top: 40px;
+    background-color: white;
+    width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px; /* Adiciona preenchimento interno */
+}
+
+/* Estilo para os campos de entrada (inputs) e labels */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 5px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #d7d7d7;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Estilo para os botões de salvar e fechar */
+.div-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    height: 30px;
+    width: 55px;
+}
+
+.btn-close {
+    color: #C3C3C3;
+    background-color: #F7F7F7;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.btn-close:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.btn-close:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-save {
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.btn-save:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
