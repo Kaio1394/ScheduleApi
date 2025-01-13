@@ -25,7 +25,7 @@ export default function Server() {
 
     return (
         <Layout>
-            <div className="home-content">
+            <div className="container-content">
                 <div className="container-table">
                     <table border="1">
                         <thead>
