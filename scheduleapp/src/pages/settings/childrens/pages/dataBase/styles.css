@@ -1,4 +1,10 @@
-/* Estilo para os campos de entrada (inputs) e labels */
+.database-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Ajuste conforme necessário */
+    margin: 0; /* Remove a centralização horizontal */
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -29,14 +35,3 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
 
-.btn-save{
-    align-self: flex-end;
-    float: right;  
-}
-
-.database-container {
-    display: flex;
-    flex-direction: column;
-    width: 300px; /* Ajuste conforme necessário */
-    margin: 0 auto; /* Centraliza horizontalmente o formulário na página */
-}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './styles.css';
 import Layout from '../layoutCommon/'; 
 import { FaTrash, FaEdit } from 'react-icons/fa';
+import InputDefault from '../../components/inputs/input-default/'
+
 
 export default function Server() {
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar a visibilidade da div de edição
@@ -55,7 +57,7 @@ export default function Server() {
                         <div className="div-edit">
                             <label className="lb-server">
                                 TagName:
-                                <input className="input-server"
+                                <InputDefault className="input-server"
                                     type="text"
                                     value={editData.tagName}
                                     onChange={(e) => setEditData({ ...editData, tagName: e.target.value })}
@@ -63,7 +65,7 @@ export default function Server() {
                             </label>
                             <label className="lb-ip">
                                 IP Address:
-                                <input className="input-ip"
+                                <InputDefault className="input-ip"
                                     type="text"
                                     value={editData.ip}
                                     onChange={(e) => setEditData({ ...editData, ip: e.target.value })}

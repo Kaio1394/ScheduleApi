@@ -3,7 +3,8 @@ import './styles.css';
 import Layout from '../layoutCommon/';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import data from './vaultData';
-import BtnSave from '../../components/buttons/btn-green'
+import BtnGreen from '../../components/buttons/btn-green'
+import InputDefault from '../../components/inputs/input-default/'
 
 
 export default function Vault() {
@@ -65,7 +66,7 @@ export default function Vault() {
                         <div className="div-edit">
                             <label className="lb-server">
                                 Variable:
-                                <input
+                                <InputDefault
                                     className="input-server"
                                     type="text"
                                     value={editData.variable}
@@ -74,7 +75,7 @@ export default function Vault() {
                             </label>
                             <label className="lb-ip">
                                 Value:
-                                <input
+                                <InputDefault
                                     className="input-ip"
                                     type="text"
                                     value={editData.value} // Valor verdadeiro aparece aqui
@@ -88,9 +89,9 @@ export default function Vault() {
                             <button className="btn-close" onClick={() => setIsEditing(false)}>
                                 Close
                             </button>
-                            <BtnSave className="btn-save" onClick={handleSave}>
+                            <BtnGreen className="btn-save" onClick={handleSave}>
                                 Save
-                            </BtnSave>
+                            </BtnGreen>
                         </div>
                     </div>
                 )}

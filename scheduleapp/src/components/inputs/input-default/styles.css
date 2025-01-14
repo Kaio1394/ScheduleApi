@@ -1,0 +1,22 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  color: #333;
+  margin-top: 5px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #d7d7d7;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
