@@ -1,0 +1,20 @@
+.btn-save {
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-save:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.btn-save:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

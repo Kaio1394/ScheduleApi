@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import './styles.css';
 import Layout from '../layoutCommon/';
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import data from './vaultData'; // Corrigir a importação
+import data from './vaultData';
+import BtnSave from '../../components/buttons/btn-green'
+
 
 export default function Vault() {
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar a visibilidade da div de edição
@@ -86,9 +88,9 @@ export default function Vault() {
                             <button className="btn-close" onClick={() => setIsEditing(false)}>
                                 Close
                             </button>
-                            <button className="btn-save" onClick={handleSave}>
+                            <BtnSave className="btn-save" onClick={handleSave}>
                                 Save
-                            </button>
+                            </BtnSave>
                         </div>
                     </div>
                 )}
