@@ -13,6 +13,7 @@ input, select {
   background-color: #f9f9f9;
   color: #333;
   margin-top: 5px;
+  font: 400 14px Roboto, sans-serif
 }
 
 input:focus, select:focus {

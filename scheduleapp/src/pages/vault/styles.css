@@ -89,25 +89,3 @@ input:focus, select:focus {
     border-color: #d7d7d7;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
-
-.btn-close {
-    color: #C3C3C3;
-    background-color: #F7F7F7;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.btn-close:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
-}
-
-.btn-close:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-

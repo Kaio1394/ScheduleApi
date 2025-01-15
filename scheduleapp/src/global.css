@@ -13,8 +13,8 @@ body{
     -web-font-smoothing: antialiased
 }
 
-input, button, textarea {
-    font: 400 18px Roboto, sans-serif;
+button, textarea {
+    font: 400 14px Roboto, sans-serif;
 }
 
 button{
@@ -50,39 +50,18 @@ form input{
     align-items: center;
 }
 
-/* .button {
-    position: absolute;
-    top: 350px;
-    left: 470px;
-    width: 400px;
-    height: 36px;
-    padding: 0 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Inter;
-    font-size: 14px;
-    line-height: 22px;
-    font-weight: 400;
-    color: #444444FF;
-    background: #C3C3C3FF;
-    opacity: 1;
-    border: none;
-    border-radius: 10px;
-} */
-
 .button:hover {
-color: #444444FF;
-background: #ADADADFF;
+    color: #444444FF;
+    background: #ADADADFF;
 }
 
-.button:hover:active {
-color: #444444FF;
-background: #989898FF;
+.button:hover:active {  
+    color: #444444FF;
+    background: #989898FF;
 }
 
 .button:disabled {
-opacity: 0.4;
+    opacity: 0.4;
 }
 
 .textbox {

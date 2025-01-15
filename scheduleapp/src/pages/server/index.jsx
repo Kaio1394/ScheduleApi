@@ -3,7 +3,7 @@ import './styles.css';
 import Layout from '../layoutCommon/'; 
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import InputDefault from '../../components/inputs/input-default/'
-
+import BtnGreen from '../../components/buttons/btn-green'
 
 export default function Server() {
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar a visibilidade da div de edição
@@ -74,7 +74,7 @@ export default function Server() {
                         </div>
                         <div className="div-buttons">
                             <button className="btn-close" onClick={closeEdit}>Close</button>
-                            <button className="btn-save" onClick={() => console.log('Save changes:', editData)}>Save</button>
+                            <BtnGreen className="btn-save" onClick={() => console.log('Save changes:', editData)}>Save</BtnGreen>
                         </div>
                     </div>
                 )}

@@ -59,13 +59,6 @@ table tr:last-child td:last-child {
     padding: 20px; /* Adiciona preenchimento interno */
 }
 
-/* Estilo para os campos de entrada (inputs) e labels */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
 label {
     font-size: 14px;
     font-weight: 600;
@@ -73,33 +66,11 @@ label {
     color: #333;
 }
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    color: #333;
-    margin-top: 5px;
-}
-
-input:focus, select:focus {
-    outline: none;
-    border-color: #d7d7d7;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-}
-
 /* Estilo para os botões de salvar e fechar */
 .div-buttons {
     margin-top: 15px;
     display: flex;
     justify-content: flex-end;
-}
-
-button {
-    height: 30px;
-    width: 55px;
 }
 
 .btn-close {
@@ -113,6 +84,8 @@ button {
     margin-right: 15px;
 }
 
+
+
 .btn-close:hover {
     background-color: #e0e0e0;
     transform: scale(1.05);
@@ -123,15 +96,7 @@ button {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.btn-save {
-    color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px;
-    cursor: pointer;
-}
+
 
 .btn-save:hover {
     background-color: #45a049;
