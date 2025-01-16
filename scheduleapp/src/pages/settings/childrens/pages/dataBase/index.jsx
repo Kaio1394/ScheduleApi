@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './styles.css';
 import BtnGreen from '../../../../../components/buttons/btn-green';
 import InputDefault from '../../../../../components/inputs/input-default/';
+import ProgressCircularBar from "../../../../../components/progress-circular-bar";
 
 export default function DataBase() {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +28,7 @@ export default function DataBase() {
                 </BtnGreen>
             </div>
             {isLoading && (
-                <div className="loading-overlay">
-                    <div className="circular-progress"></div>
-                </div>
+                <ProgressCircularBar/>
             )}
         </div>
     );

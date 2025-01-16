@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import './styles.css';
 import { useNavigate } from "react-router-dom";
+import ProgressCircularBar from "../../components/progress-circular-bar";
 
 export default function Login() {
     const navigate = useNavigate();
+    const [Isloading, setIsLoading] = useState(false);
 
     const handleLogin = (event) => {
-        event.preventDefault(); // Impede o envio padrão do formulário
-        navigate("/home"); // Redireciona para a página Home
+        event.preventDefault(); 
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false); 
+            navigate("/home"); 
+        }, 3000);
     };
 
     return (
@@ -25,6 +32,9 @@ export default function Login() {
                     </button>
                 </form>
             </section>
+            {Isloading &&
+                <ProgressCircularBar/>
+            }
         </div>
     );
 }
